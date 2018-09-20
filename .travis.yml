@@ -5,10 +5,10 @@ scala:
 services:
 - docker
 before_install:
-- docker build -t sachin/dockerimage .
+- docker build -t codingblazer/dockerimage .
 - echo "Sachin@1996" | docker login -u "codingblazer" --password-stdin
-- docker push sachin/dockerimage
-- docker run -d -p sachin/dockerimage
+- docker push codingblazer/dockerimage
+- docker run -d -p codingblazer/dockerimage
 - docker ps -a
 script:
 - sbt ++$TRAVIS_SCALA_VERSION test
