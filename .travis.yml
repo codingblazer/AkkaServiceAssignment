@@ -4,16 +4,15 @@ scala:
 - 2.12.6
 services:
 - docker
-
 before_install:
 - docker build -t sachin/dockerimage .
-- echo user
-- echo "$user"
-- echo "sachin"
-- echo pass | docker login -u user --password-stdin
+- echo $PASSWORD | docker login -u $USER_NAME --password-stdin
 - docker push sachin/dockerimage
 - docker run -d -p sachin/dockerimage
 - docker ps -a
-
 script:
 - sbt ++$TRAVIS_SCALA_VERSION test
+env:
+  matrix:
+  - secure: vTJj943/r5MSIUGL0mzDkxsPcNFtx+b6yqMUw++Wzk79DMaYBuL/fGI9J7Jl7tmh5vE08jBkuOQkxfRR08f338bZIczMSJqmG+qaKhW+//VuJLu4P7zLCxe1Bo+HgHWBWWvvpTWfAW3KEcLyGlLUzkPDFPxFZhwTo0jnKklbm21F9OYPMrg5pToj701fC1m8/8HJ1eaoal+32AlOskJwC7KyPfABO9MgsxZgfmE3p8n9jUgJVBdT7nlVivokDBmCRhOer0njIjUqWt75LDwVnODrTOtWYSW9XdyxEG42S3Fm8u54E6ctT6vZ9W8cxNQXnKpQ1+BABG4bVoobPtSt4A+p35N+HLILWrsOSKreyANuBv8+fbWkWLGple0SHR33tHIqn+7jyn1Ff2h31DuhcguZu3uNIj20MxnqGWRilZLNpTuY3ux9v5jkmcrxFrCQfD/kW0xijcmx6Ll/u6batdjIL0ruZMx9D+RRySx/YJ49BIjfoJN7nu8+N7286+bVf3GbAtiNuUZe1PzJqiqo2ROy2djKSfKa2tcyBfxzgID8EXxej9h34XW/DPhjL/kBOcW/JMbb5O3cI+iBErhDyjOb0YG86vqHcfIo9x79wEV+qVzW3nH/S9HWnvQAkU7wikcm0xt7OdOlh7sbRpgsxjvAfECarPGlUUrAHo9kOiQ=
+  - secure: H+nQtIUHGNcEY8SRNU8TLFertbPI6hrxZjC1v2SP922zSwTiUajkdk665c5SEMRDl/JrllY1TM4FkpNBnYYKZJKrYh00POPeN13f/NtFbhOXdAnalfIUsFNwlRQemA1yREwMBVGzSn1zI8aXYiuTbD8qFGcdhfJ1XMH+BxNVea3Nce2DhTUQ3HgD8pWeQd3AFvx5cT/qpc6deGUDB5SpHdq7DzoGUIR+tdGPTy3+r1CrRFwoNm4cK88m2/AI//1GxR1wRXSB3GtZL1bNrxpOHuxikI5rPsSqcXJ+UDxg6711ejpvuG4k+HPYwUY1cmtCz9yHpdSh1IE8sD/Kr3ICQoYXfGGoX4ZEhTUfb7ublLAsjGRiuZgL7JshLmm6JJevRpOWFMpcWgkj5NgBAG+NKdUNKYf8ftCvHpupptLFFsP647JpeFe9WfOGbXJgYotwyLlgGetP6HF3CYS1aRo+O43u4jFUSQg01E/OUA96s93B7K4YuaYyw+3Lc2kQDyfkGwQnlXKEmgQQZ5ZPtwjQDQiwxsh1zRuq4WCtEKh4m+Mxo1RYfhufP6fRTV0zYw3lIE7vuP/+lcmvOX1GttEpDe1243RGHPLcgp/nR8bju6rr2g+XcYo+2gwa3V4FbmQ6+0GBYk0ABicdkrpacazrqlm1gyvjA0R3gRKV+BXRlqI=
