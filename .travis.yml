@@ -7,7 +7,10 @@ services:
 
 before_install:
 - docker build -t sachin/dockerimage .
-- docker login -u $user -p $pass
+- echo $user
+- echo "$user"
+- echo "sachin"
+- echo $pass | docker login -u $user --password-stdin
 - docker push sachin/dockerimage
 - docker run -d -p sachin/dockerimage
 - docker ps -a
