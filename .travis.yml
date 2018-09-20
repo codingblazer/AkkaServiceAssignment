@@ -8,7 +8,7 @@ before_install:
 - docker build -t codingblazer/dockerimage .
 - echo "Sachin@1996" | docker login -u "codingblazer" --password-stdin
 - docker push codingblazer/dockerimage
-- docker run -d -p codingblazer/dockerimage
+- docker run -d -p 127.0.0.1:80:4567 codingblazer/dockerimage
 - docker ps -a
 script:
 - sbt ++$TRAVIS_SCALA_VERSION test
