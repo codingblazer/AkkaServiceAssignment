@@ -7,6 +7,10 @@ services:
 
 before_install:
 - docker build -t sachin/dockerimage .
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push sachin/dockerimage
+- docker run -d -p sachin/dockerimage
+- docker ps -a
 
 script:
 - sbt ++$TRAVIS_SCALA_VERSION test
