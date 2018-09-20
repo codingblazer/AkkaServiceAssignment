@@ -6,7 +6,7 @@ services:
 - docker
 before_install:
 - docker build -t sachin/dockerimage .
-- echo $PASSWORD | docker login -u $USER_NAME --password-stdin
+- echo "Sachin@1996" | docker login -u "codingblazer" --password-stdin
 - docker push sachin/dockerimage
 - docker run -d -p sachin/dockerimage
 - docker ps -a
