@@ -9,7 +9,7 @@ before_install:
 - docker build -t sachin/dockerimage .
 #!/bin/bash
 - echo $DOCKER_USERNAME
-- echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+- echo $DOCKER_PASSWORD | winpty docker login -u $DOCKER_USERNAME --password-stdin
 - docker push sachin/dockerimage
 - docker run -d -p sachin/dockerimage
 - docker ps -a
