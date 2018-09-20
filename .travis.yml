@@ -1,3 +1,12 @@
+sudo: required
 language: scala
 scala:
 - 2.12.6
+services:
+- docker
+
+before_install:
+- docker build -t sachin/dockerimage .
+
+script:
+- sbt ++$TRAVIS_SCALA_VERSION test
