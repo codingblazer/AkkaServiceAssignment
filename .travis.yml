@@ -6,9 +6,9 @@ services:
 - docker
 before_install:
 - docker build -t codingblazer/dockerimage .
-- echo $DOCKER_USERNAME
+- echo $user
 - echo $TRAVIS_SECURE_ENV_VARS
-- echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+- echo $pass | docker login -u $user --password-stdin
 - docker push codingblazer/dockerimage
 - docker run -d -p 127.0.0.1:80:4567 codingblazer/dockerimage
 - docker ps -a
