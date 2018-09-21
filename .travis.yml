@@ -1,22 +1,20 @@
 sudo: required
 language: scala
 scala:
-  - 2.12.6
+- 2.12.6
 services:
-  - docker
+- docker
 before_install:
-  - docker build -t codingblazer/dockerimage .
-  - echo $BUILD_LABEL
-  - echo $DOCKER_USERNAME
-  - echo $TRAVIS_SECURE_ENV_VARS
-  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-  - docker push codingblazer/dockerimage
-  - docker run -d -p 127.0.0.1:80:4567 codingblazer/dockerimage
-  - docker ps -a
+- docker build -t codingblazer/dockerimage .
+- echo $DOCKER_USERNAME
+- echo $TRAVIS_SECURE_ENV_VARS
+- echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+- docker push codingblazer/dockerimage
+- docker run -d -p 127.0.0.1:80:4567 codingblazer/dockerimage
+- docker ps -a
+script:
+- sbt ++$TRAVIS_SCALA_VERSION test
 env:
   global:
-  - BUILD_LABEL=1.0.${TRAVIS_BUILD_NUMBER}
-  - secure: EQRlyjRzvH0/WzLNRPt0bKFnsqYQYXTUjb4wPJ/uVAn7zvbsjKYtiN0SG0mSQ2Ln7M9Ew9B/eKn+BkSErpxXcj+mYiqu9Lg+/3azHGP9mZzPZKGsoDDZn1hSFsyIKj5bSWjZXYDXHkftF7LRwXGJ8FXwMRqIuWa7BNHBCx2kfoW9WbPANUcLFmBFV6zUW/AJ6PgJrb6Txe6xPJlIjWHrvKtjmLYY4pI6/UArcii9qeV0qJ0/qB2YfCWSyPSeZU51f1AE2+RImnKC3m13SsGgL3DDUbHqWz3/FdazQEaADb090XPVIZbGXyBLQ/jVXR138SI8qUi/mCgPNjMT8T3uKkdCxL7UDN0q1M1UoegV+hA6mFTExvXtuj1QgQX00OBTteTKBqZoRGfa7Kn7QJH2BOTr6mWm6hM7X7x3XRwa0/O/O1EvCqpC6BQUibvtT1mX7nzhdsF8gnmQlLj3nmfg8ZoRJ+hTd/QFOxeBJy2M9NAhjQ84CoCJQdBZBrHJ5FvT++BcCERjeR9b/6UI39cZomjzRV4KdpxMUbCQdOiRlqaO5KnwQC38kK5d4F/QRFXYu5oXnodWr+vCGknJaTmvF2OJq7yo+jm/mggJBQHOxv8+ho7TFE3estC8mm2x3hnc8up+v7/Jr7dgIjpZKBAPOI5SmxyBag/HrajRGIJj7g0=
-  - secure: YAahhUIt8TIy1Io2OiAQ+SiL8dxHdip1Baj0dtMBfvsHqxN1ng1k5L6m98vCr8MIa6GNVWe6Nvtq65pQSGeG2qqsRzuQSOhGqAfvDZPmOPssXorLagCIB5rmWZSOG656eXDGZjh/4wbD614sN2HI4YHUE+rxXbSpJTyPpqJPDP5IVbMUY42M89EDO6paYM+bc8ITpQ8nEEd1qyWCAoG7VNrY1IAYZbSNkc0FEU48S5zLZ0vj6dsHbHsl0m1F23f37AFFtNmxiC6lRoULGextFvWMjvbOoAbVedXcHmXUfbwk/9Wo4m2nQYpikYK45yYMFzp8FV+knhpO/CVp5hbHiinUteWwuafHCSBjGrV/G/7n4i3daygh16TmZ0OHSzJyOWG/FjynoQeXnWZ54rBzVyXYEF2H9LO1L1cyeMG/qZHFo2oCE0JVBt/YJ6E286vbp0dOJhoziKVg4p0ITXjXi3MPARQTjez6AzF//vycU7CkM2+cBcwwKoxInfN4oNjn8lA9vFVCVQkrwkZxxLKVxb7S6EPzWvd6RWfg0GZ3NZwUZuSTdX6kIEc60PJx2Yw4/7L0BV3U3avBPMMNW8AHrVfchB9omxS9ImGfRem/TFQqyDjwRDHyJPkZn5l/O0MYTdrdupssi3FXq945+C6rGZbDI6fwR3y37OJYVOw+Ubw=
-script:
-  - sbt ++$TRAVIS_SCALA_VERSION test
+  - secure: WArws0kuNpDPFr74mivK2dwQqAMHQd+3etkun6tgrkXOcOssD+Wygwtns6y1oFKOu0mOecLNOqGgKXJcY2jW2J1aoaEBYfGI/efDgh/EbWfeOkbEuj/b8BwIRVS9+/kNIjUU8ZHUUM84NzqN1Iqv0BGWKFhn/zBPjgoL2OikRk6LbeB1JmLuMVkhs4RvUXTwJuyIf1qrxGGaoDbJwQjgxQEbHFMT+NANoaDmustW5yH6DU6ByL9uu8BHPCYJI0Crw/xKC/9q8TYJRNCxrUjSdKgoCvuyLgtE6KdhjAtiNjzDSE7bI14ij6wH2juRo7jOB+Psvb0ih8iZidNfmwfPuUiVjJ4TGhGyvPTSwT4oGjAHYV7tSApwuylh7m0NVSze6l90NXs6Jmre5mRl5WPHNwdIJed7xeB7b4Ctd/NFXToXdOOss2OZjZ+N1aoVS3vylq7RkFEtglRGhPLVAqgIOrI2CcMrHsYY18zDBIFbUlTQxpZbRKuLIk3sFFzuD+nir/ckpVDkD+/1TNmF9fD69CIEzZiDinYLBs/7hGKPcbQ2qgzGkuJZowYdyCWaFX57wPrP34PpdmG3kOjgh2DtnccXvBD6UELR7D3mWJHIJ2tdKnqIlJQQYHdL9lLM08sJcEAHDY33h/wMwabOernJ80aWNwGhk0qBj/+D2E0cDOI=
+  - secure: K69G2x1bJ4VdsDlmnNcMsZWgUccN61CdQNhkrrEKaqPAwg37F5yDiAoay1cTg8gNqRPS1sanm4Nw+G9NYRTEzkKMgQw/pq7aLX9ej5KBi5WjrJwphMVVqImK7yJ85+/cAHTOHOHyKyDRYQ+MpalF/PuFMMs48stUBD6Hudp/7QciC4jJ+LiWsvYbW5DjZg7ByTN3ZzHF1iuNJLkF6y+JqA+uyusRnaIrVoZc97JIuLb36ghJbAf0WF1jQxYB/+lPR2KrL7/pUbX5F0w2fdVPleK5BIFU0tCw+Hbx9KfcL5I8mQR3NezLBD21KogUHsp/Xffl1jDhS7FEWlOVimVdS02TMbsg68JvH/p1dZtgqoltu+36JOdNf6x9+5jQ9wOutY0GAgxtvBeWJyC/jUAxWWzuz6lmGqMZRwSo2jQUyAPhwLWCa1G3P4yyHfaU9rBLYJPZ3uOHmogvI97gJFQo9jTDELcz1Si3gurAnVc+UAKTHn22woNfH83+P6npQUYmxAqpVyh5YKTOSCsTj8iJDlu64eB6Fywo7c/W5U4vUo3MY2lINhvjkC8kTs2X7fYn7uKv/VWJMRNFGc6eNwNbDi9DAU8qujoJHugvNEQuE786QRvXI/VPeclUmWS8PBid0KDW8uspyQAWV9IYrzke9yvEeZNBtXVEWPyDXHukePQ=
