@@ -6,7 +6,6 @@ services:
 - docker
 before_install:
 - docker build -t codingblazer/dockerimage .
-- echo $USERNAME
 - echo $PASSWORD | docker login -u $USERNAME --password-stdin
 - docker push codingblazer/dockerimage
 - docker run -d -p 127.0.0.1:80:4567 codingblazer/dockerimage
