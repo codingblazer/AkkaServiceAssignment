@@ -4,16 +4,8 @@ scala:
 - 2.12.6
 services:
 - docker
-before_install:
-- docker build -t codingblazer/dockerimage .
-- echo $user
-- echo $TRAVIS_SECURE_ENV_VARS
-- echo $pass | docker login -u $user --password-stdin
-- docker push codingblazer/dockerimage
-- docker run -d -p 127.0.0.1:80:4567 codingblazer/dockerimage
-- docker ps -a
 script:
-- sbt ++$TRAVIS_SCALA_VERSION test
+- ./run.sh
 env:
   global:
   - secure: WArws0kuNpDPFr74mivK2dwQqAMHQd+3etkun6tgrkXOcOssD+Wygwtns6y1oFKOu0mOecLNOqGgKXJcY2jW2J1aoaEBYfGI/efDgh/EbWfeOkbEuj/b8BwIRVS9+/kNIjUU8ZHUUM84NzqN1Iqv0BGWKFhn/zBPjgoL2OikRk6LbeB1JmLuMVkhs4RvUXTwJuyIf1qrxGGaoDbJwQjgxQEbHFMT+NANoaDmustW5yH6DU6ByL9uu8BHPCYJI0Crw/xKC/9q8TYJRNCxrUjSdKgoCvuyLgtE6KdhjAtiNjzDSE7bI14ij6wH2juRo7jOB+Psvb0ih8iZidNfmwfPuUiVjJ4TGhGyvPTSwT4oGjAHYV7tSApwuylh7m0NVSze6l90NXs6Jmre5mRl5WPHNwdIJed7xeB7b4Ctd/NFXToXdOOss2OZjZ+N1aoVS3vylq7RkFEtglRGhPLVAqgIOrI2CcMrHsYY18zDBIFbUlTQxpZbRKuLIk3sFFzuD+nir/ckpVDkD+/1TNmF9fD69CIEzZiDinYLBs/7hGKPcbQ2qgzGkuJZowYdyCWaFX57wPrP34PpdmG3kOjgh2DtnccXvBD6UELR7D3mWJHIJ2tdKnqIlJQQYHdL9lLM08sJcEAHDY33h/wMwabOernJ80aWNwGhk0qBj/+D2E0cDOI=
